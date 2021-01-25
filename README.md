@@ -1,4 +1,4 @@
-# Pizzeria Web - Primer proyecto en Django💻🍕
+# Pizzeria Web - Primer proyecto en Django 💻🍕
 
 ## Proyecto realizado en la cátedra Electiva de programación con Python.
 
