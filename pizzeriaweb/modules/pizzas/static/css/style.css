@@ -153,4 +153,6 @@ input:focus{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    text-decoration: none;
+    color: #fff;
 }

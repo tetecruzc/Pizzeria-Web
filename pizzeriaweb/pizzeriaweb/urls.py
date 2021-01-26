@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from modules.pizzas.views import pruebaPrimerTemplate
-from modules.pizzas.views import pruebaRedireccion
-
+from modules.pizzas.views import setCI
+from modules.pizzas.views import home
+from modules.pizzas.views import checkIfUserExists
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', pruebaPrimerTemplate),
-    path('pruebaRedireccion/',pruebaRedireccion)
+    path('', home),
+    path('order', setCI),
+    path('userInfo/',checkIfUserExists)
 ]
