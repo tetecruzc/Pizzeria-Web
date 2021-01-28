@@ -16,4 +16,4 @@ def checkIfUserExists(request):
         user = User(identifier=identifier, name='Stephaniec',lastname='Cruz',birthday='2020-02-02')
         user.save()
         return redirect('/xx')
-    return render(request,'prueba.html')
+    return render(request,'user_data.html')

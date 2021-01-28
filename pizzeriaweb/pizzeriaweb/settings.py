@@ -55,7 +55,7 @@ ROOT_URLCONF = 'pizzeriaweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['pizzeriaweb/modules/pizzas/templates'],
+        'DIRS': [os.path.join(BASE_DIR,"modules/pizzas/templates")], #['pizzeriaweb/modules/pizzas/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
