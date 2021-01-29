@@ -2,7 +2,7 @@
 {% load static %}
 <html>
     <head>
-        <title></title>
+        <title>{% block page_title %}  {% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Oswald&amp;display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
