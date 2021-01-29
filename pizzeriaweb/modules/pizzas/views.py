@@ -3,7 +3,10 @@ from .models import User
 
 
 def home(request):
-    return render(request, "home.html")
+    context={"title" : "Despues vemos qué ponemos aqui, jeje",
+             "subtitle" : "Cambiaré todos los estilos al finalizar la funcionalidad"
+            }
+    return render(request, "home.html", context)
 
 def order(request):
     return render(request, "order.html")
