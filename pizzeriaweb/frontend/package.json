@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Vue.js project",
   "author": "Stephanie Cruz <scruz.17@est.ucab.edu.ve>",
   "private": true,
   "scripts": {
@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
-    "vue": "^2.5.2",
+    "vue": "^2.6.12",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-typescript": "^4.5.11",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
