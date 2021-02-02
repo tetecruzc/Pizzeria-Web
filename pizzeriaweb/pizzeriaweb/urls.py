@@ -15,14 +15,15 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from modules.pizzas.views import order
 from modules.pizzas.views import home
-from modules.pizzas.views import checkIfUserExists
+#from modules.pizzas.views import checkIfUserExists
+from modules.pizzas.views import saveUser
+from modules.pizzas.views import userInfo
+from modules.pizzas.views import orderPizza
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name="home"),
-    path('order', order, name="order"),
-    path('userInfo/', checkIfUserExists,name="userInfo")
-]
+    path('api/v1.0/', include("modules.pizzas.urls")) 
+]   

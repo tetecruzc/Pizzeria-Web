@@ -26,9 +26,21 @@ SECRET_KEY = '7o!7em-!k=-7@v!ri7(f2iq*9_(_6lh3pbtxef2+6=ou%(6$%+'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+'''
+SECURE_SSL_REDIRECT = True
 
 # Application definition
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = False
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080'
+] 
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:8080',
+]'''
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'modules.pizzas'
+    'modules.pizzas',
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'pizzeriaweb.urls'
