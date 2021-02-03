@@ -12,17 +12,6 @@ def home(request):
 def order(request):
     return render(request, "order.html")
 
-def userInfo(request):
-    if request.method == 'POST':
-        identifier = request.POST['identifier']
-        try:
-            user = User.objects.get(id=identifier)
-            return redirect('step3')
-        except User.DoesNotExist:
-        # user = User(identifier=identifier, name='Stephaniec',lastname='Cruz',birthday='2020-02-02')
-        # user.save()
-            return redirect('step2',id=identifier)#'/'+identifier)  
-    return render(request, "order.html") #CAMBIAR REDIRECCIÓN
 
 def saveUser(request,id):
     if request.method == 'POST':

@@ -1,7 +1,9 @@
 from rest_framework import routers
-from .viewsets import PizzaViewSet
+from django.urls import path
+from .viewsets import PizzaViewSet, UserViewSet
 
-router = routers.SimpleRouter()
-router.register('pizzas', PizzaViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('', PizzaViewSet.apiOverView, name = "api-overview"),
+    path('pizza-list', PizzaViewSet.pizzaList, name = "pizza-list"),
+    path('get-user/<int:entryId>', UserViewSet.getUser, name = "get-user")
+]

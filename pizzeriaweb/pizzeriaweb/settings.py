@@ -36,13 +36,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8080'
+    'http://127.0.0.1:8080'
 ] 
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:8080',
 ]'''
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 INSTALLED_APPS = [
+    'admin_interface', 
+    'colorfield', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,8 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'modules.pizzas',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN' 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,3 +142,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
