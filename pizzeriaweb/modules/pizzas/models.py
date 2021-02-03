@@ -10,12 +10,21 @@ class Ingredient(models.Model):
         txt = "Ingrediente {0}"
         return txt.format(self.name)
 
+class Drink(models.Model):
+    id = models.PositiveIntegerField(primary_key=True)
+    name = models.CharField(max_length=20)
+    price = models.DecimalField(max_digits=20, decimal_places=2)
+
+    def __str__(self):
+        txt = "Bebida {0}"
+        return txt.format(self.name)
+
 
 class Size(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField(max_length=20)
     price = models.DecimalField(max_digits=20, decimal_places=2)
-    
+
     def __str__(self):
         txt = "Tamaño {0}"
         return txt.format(self.name)
@@ -31,27 +40,14 @@ class User(models.Model):
         return txt.format(self.name, self.lastname)
 
 class Pizza(models.Model):
-    ingedients = models.ManyToManyField(Ingredient)
-    #ingredients = models.ForeignKey(Ingredient,null=True,on_delete=models.CASCADE)# models.ForeignKey(Ingredient, null=True,blank=False,on_delete=models.CASCADE)
+    ingedients = models.ManyToManyField(Ingredient,blank=True)
+    drink = models.ForeignKey(Drink, null=True,blank=True,on_delete=models.CASCADE)
     size = models.ForeignKey(Size, null=False,blank=False,on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
+    totalPrice = models.DecimalField(max_digits=20, decimal_places=2)
     user = models.ForeignKey(User, null=False,blank=False,on_delete=models.CASCADE)
     orderId = models.PositiveIntegerField()
 
     def __str__(self):
         txt = "Pizza {0}"
         return txt.format(self.id)
-
-
-
-'''
-class Order(models.Model):
-    id = models.PositiveIntegerField(primary_key=True)
-    date = models.DateTimeField(auto_now_add=True)
-    pizza = models.ForeignKey(Pizza, null=False,blank=False,on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False,blank=False,on_delete=models.CASCADE)
-    
-    def __str__(self):
-            txt = "Order number {0}"
-            return txt.format(self.id)
-'''

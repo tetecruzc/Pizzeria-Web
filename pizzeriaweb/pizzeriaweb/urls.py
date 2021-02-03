@@ -1,29 +1,20 @@
-"""pizzeriaweb URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
+from rest_framework import routers
+from django.urls import path
 from django.contrib import admin
-from django.urls import path, include
-from modules.pizzas.views import order
-from modules.pizzas.views import home
-#from modules.pizzas.views import checkIfUserExists
-from modules.pizzas.views import saveUser
-from modules.pizzas.views import userInfo
-from modules.pizzas.views import orderPizza
+from modules.pizzas.viewsets import PizzaViewSet, UserViewSet, SizeViewSet, IngredientViewSet, SalesViewSet, DrinkViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1.0/', include("modules.pizzas.urls")) 
-]   
+    path('pizza-list', PizzaViewSet.pizzaList, name = "pizza-list"),
+    path('create-pizza', PizzaViewSet.createPizza, name = "create-pizza"),
+    path('get-user/<int:entryId>', UserViewSet.getUser, name = "get-user"),
+    path('create-user', UserViewSet.createUser, name = "create-user"),
+    path('get-sizes', SizeViewSet.getSizes, name = "get-sizes"),
+    path('get-drinks', DrinkViewSet.getDrinks, name = "get-drinks"),
+    path('get-ingredients', IngredientViewSet.getIngredients, name = "get-ingredients"),
+    path('last-order', PizzaViewSet.lastOrderId, name = "last-order"),
+    path('salesBySize/<int:entryId>', SalesViewSet.salesBySize, name = "salesBySize"),
+    path('salesByIngredient/<int:entryId>', SalesViewSet.salesByIngredient, name = "salesByIngredient"),
+    path('salesByUser/<int:entryId>', SalesViewSet.salesByUser, name = "salesByUser"),
+    path('sales', SalesViewSet.sales, name = "sales")
+]

@@ -51,4 +51,3 @@ def orderPizza(request,id):
     else:
         form = PizzaForm()
     return render(request,'order_pizzas.html',{'form': form})
-

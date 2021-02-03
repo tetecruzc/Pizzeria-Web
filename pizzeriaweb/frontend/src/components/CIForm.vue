@@ -1,13 +1,25 @@
 <template> 
    <div class="container">
+       <svg class="topIcon" viewBox="0 0 40 40" role="img">
+            <path d="M20 9c7.18 0 13 5.82 13 13 0 7.077-5.655 12.833-12.693 12.996L20 35H0v-2h20c6.075 0 11-4.925 11-11s-4.925-11-11-11c-5.979 0-10.843 4.77-10.996 10.712L9 22H7c0-7.18 5.82-13 13-13zM9 29v2H2.96v-2H9zm0-4v2H5.98v-2H9zm17.244-8.635l1.312 1.51-7.8 6.78-1.312-1.51 7.8-6.78zm6.132-5.98l1.93 2.23-1.512 1.31-1.93-2.23 1.512-1.31zM24.5 5v2h-9V5h9z">
+            </path>
+        </svg>
         <h1>{{ title }}</h1>
          <div class="input-container">
-            <input class="input" type="number" name="ci" placeholder="CI">
+            <input class="input" type="number" placeholder="CI" v-model="ci">
         </div>
-        <div class="button" @click="goToUrl('UserData',1)">
-            <input class="button-submit" type="submit" value="Siguiente">
-            <svg class="button-icon" role="img" viewBox="0 0 24 24"><path d="M15.49 21.48a1 1 0 01-1.54 0 1.19 1.19 0 010-1.63l6.33-6.71H1.09a1.15 1.15 0 010-2.3h19.17L14 4.15a1.19 1.19 0 010-1.63 1 1 0 011.54 0l8.19 8.66a1.21 1.21 0 010 1.64z" ></path></svg>
-        </div>
+        <b-alert v-model="notFountCIAlert" style="font-size: 20px;" variant="danger" dismissible>
+          Debe ingresar su cedula de identidad!
+        </b-alert>
+         <b-button
+            variant="primary"
+            class="float-right custom-button-primary"
+             @click="checkIfUserExists()"
+             
+          >
+            Siguiente
+          </b-button>
+       
    </div>
 </template>
 
@@ -18,16 +30,38 @@ export default {
   data () {
     return {
       title: 'Ingrese su CI para iniciar la orden',
+      ci: 0,
+      notFountCIAlert: false
      }
   },
   methods:{
-     goToUrl(url, id) {
-        this.$router.push({
-            name: url,
-            params: { id: id },
-          })
-          .catch(() => {});
-      }
+     checkIfUserExists() {
+        const path = 'http://127.0.0.1:8000/get-user/'+ this.ci;
+        if (this.ci !== 0 && this.ci !== "" ){
+            this.notFountCIAlert = false
+               axios.get(path).then((response)=>{
+                     if (response.data.Error === "401"){
+                           this.$router.push({
+                              name: 'UserData',
+                              params: { id: this.ci },
+                           })
+                           .catch(() => {});
+                     }else{
+                           this.$router.push({
+                              name: 'OrderPizzas',
+                              params: { id: this.ci },
+                           })
+                           .catch(() => {});
+                     }
+               })
+               .catch((error)=>{
+                     console.log(error)
+               })
+        }else{
+           this.notFountCIAlert = true
+        }
+            
+        } 
   }
    
 }

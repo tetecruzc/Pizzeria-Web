@@ -26,9 +26,10 @@ export default {
   },
   methods:{
     getPizzas(){
-      const path = 'http://127.0.0.1:8000/api/v1.0/pizzas'
+      const path = 'http://127.0.0.1:8000/api/v1.0/pizzas/?format=json'
       axios.get(path).then((response)=>{
         this.pizzas = response.data
+        console.log(this.pizzas)
       })
       .catch((error)=>{
         console.log(error)
